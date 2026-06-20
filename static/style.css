@@ -1,0 +1,17 @@
+body {
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    font-family: Arial, sans-serif;
+}
+
+/* Remove old card restriction */
+.card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+/* Optional: make form look better */
+.form-container {
+    max-width: 1000px;
+    margin: auto;
+}

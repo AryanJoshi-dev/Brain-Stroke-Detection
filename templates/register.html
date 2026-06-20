@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<style>
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+
+    .register-card {
+        width: 400px;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .register-card h2 {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #1e7e34;
+    }
+
+    .link {
+        margin-top: 15px;
+        display: block;
+    }
+
+    .error {
+        color: red;
+        margin-bottom: 10px;
+    }
+
+    .success {
+        color: green;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="register-container">
+
+    <div class="register-card">
+
+        <h2>📝 Create Account</h2>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- (Optional: you can remove this if you only want popup) -->
+        {% if success %}
+            <p class="success">{{ success }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p class="link">
+            Already have an account?
+            <a href="{{ url_for('login') }}">Login</a>
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ✅ POPUP (SAFE VERSION - NO ERRORS) -->
+{% if success %}
+<div id="popup-message" data-message="{{ success }}"></div>
+
+<script>
+    const el = document.getElementById("popup-message");
+    if (el) {
+        alert(el.dataset.message);
+    }
+</script>
+{% endif %}
+
+{% endblock %}

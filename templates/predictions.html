@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Stroke Detection{% endblock %}
+
+{% block content %}
+
+<style>
+    .form-card {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    input[type="file"] {
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    .btn-predict {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-predict:hover {
+        transform: scale(1.03);
+    }
+
+    .result-box {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 22px;
+        font-weight: bold;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .positive { background: #f8d7da; color: #721c24; }   /* Stroke Detected */
+    .negative { background: #d4edda; color: #155724; }   /* Normal */
+
+    img.preview {
+        margin-top: 15px;
+        max-width: 100%;
+        border-radius: 10px;
+        display: none;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+</style>
+
+<div class="form-card">
+
+    <h2>🧠 Stroke Detection System</h2>
+    <p>Upload a brain scan image to detect stroke</p>
+
+    <form action="/prediction" method="POST" enctype="multipart/form-data">
+
+        <input type="file" name="file" accept="image/*" onchange="previewImage(event)" required>
+
+        <img id="preview" class="preview">
+
+        <button type="submit" class="btn-predict">🔍 Detect Stroke</button>
+
+    </form>
+
+    {% if result %}
+        <div class="result-box 
+            {% if result == 'Stroke Detected' %}positive
+            {% else %}negative
+            {% endif %}
+        ">
+            {{ result }}
+        </div>
+    {% endif %}
+
+</div>
+
+<script>
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+        const output = document.getElementById('preview');
+        output.src = reader.result;
+        output.style.display = "block";
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+{% endblock %}

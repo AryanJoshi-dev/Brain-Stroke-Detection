@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+    .home-container {
+        text-align: center;
+        margin-top: 60px;
+        padding: 20px;
+    }
+
+    .abstract-box {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 25px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="home-container">
+
+    <div class="title">
+       Innovations in Stoke Identification A Machine Learing-Based Diagnostic Model Using Neuroimage
+    </div>
+
+    <div class="abstract-box">
+    This application focuses on the early identification of stroke using advanced machine learning 
+    techniques applied to neuroimaging data. The system leverages a deep learning model trained on 
+    brain scan images to classify them as <b>Normal</b> or <b>Stroke Detected</b>.
+    
+    The model utilizes convolutional neural networks (CNNs) to analyze brain CT/MRI scan images, 
+    extracting critical features that indicate the presence of stroke. Image preprocessing, 
+    resizing, and normalization techniques are employed to ensure accurate and efficient predictions.
+    
+    By adopting this machine learning-based diagnostic approach, the system provides rapid and 
+    reliable stroke detection, enabling timely medical intervention. This tool is highly useful for 
+    healthcare professionals, radiologists, and emergency medical teams to support clinical 
+    decision-making and improve patient outcomes.
+</div>
+
+    {% if session.get('user') %}
+        <a href="/prediction" class="btn btn-success btn-lg mt-3">
+            🔍 Start Prediction
+        </a>
+    {% endif %}
+
+</div>
+
+{% endblock %}

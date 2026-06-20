@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<style>
+    .welcome-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        text-align: center;
+        color: white;
+    }
+
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .btn-group {
+        margin-top: 20px;
+    }
+
+    .btn-custom {
+        padding: 12px 25px;
+        font-size: 16px;
+        border-radius: 8px;
+        margin: 10px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .login-btn {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .login-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .register-btn {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .register-btn:hover {
+        background-color: #1e7e34;
+    }
+
+    .card-box {
+        background: rgba(0,0,0,0.5);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+</style>
+
+<div class="welcome-container">
+
+    <div class="card-box">
+
+        <div class="title">
+            Innovations in Stoke Identification A Machine Learing-Based Diagnostic Model Using Neuroimage
+        </div>
+
+        <div class="btn-group">
+            <a href="{{ url_for('login') }}">
+                <button class="btn-custom login-btn">Login</button>
+            </a>
+
+            <a href="{{ url_for('register') }}">
+                <button class="btn-custom register-btn">Register</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+
+    .login-card {
+        width: 400px;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .login-card h2 {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .link {
+        margin-top: 15px;
+        display: block;
+    }
+</style>
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <h2>🔐 Welcome Back</h2>
+
+        {% if error %}
+            <p style="color: red; margin-bottom: 10px;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="link">
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Register</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
